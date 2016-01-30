@@ -13,6 +13,7 @@ module.exports = {
 	    game.load.image('wall', 'img/game_assets/wall.png');
 	    game.load.image('star', 'img/game_assets/star.png');
 	    game.load.spritesheet('dude', 'img/game_assets/dude.png', 32, 48);
+	    game.load.spritesheet('enemy', 'img/game_assets/baddie.png', 32, 32);
 	},
 
 	create: function(){
