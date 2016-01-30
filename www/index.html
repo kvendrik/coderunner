@@ -51,6 +51,7 @@
     <link rel="stylesheet" type="text/css" href="/css/main.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.9.0/codemirror.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.9.0/theme/monokai.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,800,800italic' rel='stylesheet' type='text/css'>
   </head>
   <body>
 
@@ -59,11 +60,15 @@
     </header>
 
     
-<section class="editor">
+<section class="pane pane--left">
 	<div class="js-editor"></div>
-	<div class="editor__console js-console"></div>
 </section>
-<section class="playground js-playground"></section>
+<section class="pane pane--right">
+	<ul class="console js-console">
+		<li>This is the console. It'll help you debug and tell you if something is up.</li>
+	</ul>
+	<section class="playground js-playground"></section>
+</section>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.9.0/codemirror.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.9.0/mode/javascript/javascript.js"></script>

@@ -4,7 +4,7 @@ module.exports = {
 
 	init: function(methods){
 		var el = document.getElementsByClassName('js-playground')[0];
-		game = new Phaser.Game(window.innerWidth*0.6, el.parentNode.offsetHeight, Phaser.Physics.P2JS, el, methods);
+		game = new Phaser.Game(window.innerWidth*0.6, el.parentNode.offsetHeight - 200, Phaser.Physics.P2JS, el, methods);
 	},
 
 	preload: function(){

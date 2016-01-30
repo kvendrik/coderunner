@@ -1,5 +1,4 @@
 var game = require('./game'),
-	player = require('./player'),
 	platforms = require('./platforms');
 
 var stars;
@@ -17,7 +16,7 @@ module.exports = {
 	    }
 	},
 
-	update: function(){
+	update: function(player){
 		game.getRaw().physics.arcade.collide(stars, platforms.getRaw());
     	game.getRaw().physics.arcade.collide(stars, player.getRaw(), this._collectStar);
 	},

@@ -1,7 +1,11 @@
 <% layout('_inc/layout') -%>
 
-<section class="editor">
+<section class="pane pane--left">
 	<div class="js-editor"></div>
-	<div class="editor__console js-console"></div>
 </section>
-<section class="playground js-playground"></section>
+<section class="pane pane--right">
+	<ul class="console js-console">
+		<li>This is the console. It'll help you debug and tell you if something is up.</li>
+	</ul>
+	<section class="playground js-playground"></section>
+</section>

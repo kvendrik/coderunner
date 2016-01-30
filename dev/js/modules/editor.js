@@ -1,16 +1,22 @@
 module.exports = {
   
     init: function(gameMethods){
+        var self = this;
+
         this._initCm();
         this._bindEvents();
 
         this._gameMethods = gameMethods;
         window.publicGameMethods = gameMethods.publicMethods;
+
+        return {
+            stopRunning: self._stopRunning.bind(self)
+        };
     },
   
     _initCm: function(){
         var cm = CodeMirror(document.getElementsByClassName('js-editor')[0], {
-            value: 'this.moveRight(10);\nthis.moveLeft(5);\nthis.jump();\nthis.run();',
+            value: 'this.moveRight(10);\nthis.moveLeft(5);\nthis.jump();\nthis.getMyPosition();\nthis.runScript();',
             lineNumbers: true,
             mode: 'javascript',
             theme: 'monokai'
@@ -20,37 +26,28 @@ module.exports = {
     
         this._cm = cm;
     },
+
+    _stopRunning: function(){
+        this._gameMethods.resetPlayer();
+        this._btnEl.innerHTML = 'Run';
+        this._running = false;
+    },
   
     _bindEvents: function(){
-        var self = this,
-            running = false;
+        var self = this;
 
-        window.onerror = this._handleEditorCodeError.bind(this);
+        this._running = false;
 
-        var btnEl = document.getElementsByClassName('js-editor-run')[0];
+        var btnEl = this._btnEl = document.getElementsByClassName('js-editor-run')[0];
         btnEl.addEventListener('click', function(){
-            if(running){
-                self._gameMethods.resetPlayer();
-                btnEl.innerHTML = 'Run';
-                running = false;
-                //self._cm.isReadOnly(false);
+            if(this._running){
+                self._stopRunning();
             } else {
                 self._execEditorCode(self._cm);
                 btnEl.innerHTML = 'Stop';
-                running = true;
-                //console.log(self._cm);
-                //self._cm.isReadOnly(true);
+                this._running = true;
             }
         }, false);
-    },
-  
-    _handleEditorCodeError: function(msg, url, lineIdx, charIdx, err){
-        var wrapper = document.getElementsByClassName('js-console')[0],
-            el = document.createElement('li');
-
-        el.innerHTML = msg;
-
-        wrapper.appendChild(el);
     },
   
     _execEditorCode: function(editor){

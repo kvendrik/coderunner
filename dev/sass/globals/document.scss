@@ -10,19 +10,41 @@ html,body {
 }
 
 body {
-  	font: $size-m $size-m $main-family;
+  	font: $main-weight $size-m $main-family;
   	color: $white;
   	background-color: $base-color;
   	line-height: $line-height;
 }
 
-.editor {
-	width: 40%;
+.pane {
+	height: 100%;
 	float: left;
 	overflow: hidden;
+
+	&.pane--left {
+		width: 40%;
+	}
+
+	&.pane--right {
+		width: 60%;
+	}
+}
+
+.console {
+	height: 200px;
+	font-size: $size-s;
+	overflow-y: auto;
+
+	li {
+		padding: $margin-m;
+		background-color: rgba($blue, .2);
+
+		&.console__li--err {
+			background-color: rgba($red, .2);
+		}
+	}
 }
 
 .playground {
-	width: 60%;
 	overflow: hidden;
 }

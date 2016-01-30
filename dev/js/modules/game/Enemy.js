@@ -1,5 +1,4 @@
 var game = require('./game'),
-	player = require('./player'),
 	platforms = require('./platforms');
 
 var enemy,
@@ -36,17 +35,17 @@ Enemy.prototype = {
 	    }, 1000);
 	},
 
-	update: function(){
+	update: function(player){
 		game.getRaw().physics.arcade.collide(enemy, platforms.getRaw());
 		game.getRaw().physics.arcade.collide(player.getRaw(), enemy);
 
 		enemy.body.velocity.x = 0;
 
 	    if(actions.left){
-	        enemy.body.velocity.x = -150;
+	        enemy.body.velocity.x = -100;
 	        enemy.animations.play('left');
 	    } else if(actions.right) {
-	        enemy.body.velocity.x = 150;
+	        enemy.body.velocity.x = 100;
 	        enemy.animations.play('right');
 	    } else {
 	        enemy.animations.stop();

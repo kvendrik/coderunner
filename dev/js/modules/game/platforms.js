@@ -12,11 +12,11 @@ module.exports = {
 	    ground.scale.setTo(2, 2);
 	    ground.body.immovable = true;
 
-	    var ledge = platforms.create(400, 400, 'ground');
-	    ledge.body.immovable = true;
+	    // var ledge = platforms.create(400, 400, 'ground');
+	    // ledge.body.immovable = true;
 
-	    ledge = platforms.create(0, 250, 'ground');
-	    ledge.body.immovable = true;
+	    // ledge = platforms.create(0, 250, 'ground');
+	    // ledge.body.immovable = true;
 
 	    var wall = platforms.create(0, 0, 'wall');
 	    wall.body.immovable = true;

@@ -8,11 +8,11 @@ var player,
 	    up: false
 	};
 
-module.exports = {
+var Player = function(publicBases){
+	this._publicBases = publicBases;
+};
 
-	init: function(publicBases){
-		this._publicBases = publicBases;
-	},
+Player.prototype = {
 
 	create: function(){
 		player = game.getRaw().add.sprite(32, game.getRaw().world.height - 150, 'dude');
@@ -71,3 +71,5 @@ module.exports = {
 	}
 	
 };
+
+module.exports = Player;
