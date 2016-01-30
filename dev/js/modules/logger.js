@@ -35,7 +35,6 @@ module.exports = {
                 msg += msgs[i]+' ';
             }
         }
-        console.log(msg);
         el.innerHTML = msg;
         wrapper.appendChild(el);
 
