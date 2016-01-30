@@ -1,4 +1,4 @@
-var publicBases = {
+window.publicBases = {
     _que: [],
     clearQue: function(){
         this._que = [];
@@ -32,6 +32,13 @@ var publicBases = {
             },
             duration: duration
         });
+    },
+    getEnemiesPositions: function(){
+        var positions = [];
+        enemies.forEach(function(enemy){
+            positions.push({ x: enemy.getRaw().x, y: enemy.getRaw().y });
+        });
+        return positions;
     }
 };
 
@@ -42,7 +49,7 @@ var game = require('./game'),
     stars = require('./stars');
 
 var enemies = [new Enemy()],
-    player = new Player(publicBases);
+    player = new Player(window.publicBases);
 
 module.exports = {
     init: function(){
@@ -53,34 +60,33 @@ module.exports = {
         });
 
         return {
+            setPublicMethod: function(name, func){
+                this.publicMethods[name] = func;
+            },
             clearQue: function(){
-                publicBases.clearQue();
+                window.publicBases.clearQue();
             },
             resetPlayer: function(){
                 player.resetPos();
             },
+            runScript: function(){
+                window.publicBases.runQue();
+            },
             publicMethods: {
                 moveRight: function(steps){
-                    publicBases.move('right', steps*100);
+                    window.publicBases.move('right', steps*100);
                 },
                 moveLeft: function(steps){
-                    publicBases.move('left', steps*100);
+                    window.publicBases.move('left', steps*100);
                 },
                 jump: function(){
-                    publicBases.move('up', 1000);
-                },
-                runScript: function(){
-                    publicBases.runQue();
+                    window.publicBases.move('up', 1000);
                 },
                 getMyPosition: function(){
                     return { x: player.getRaw().x, y: player.getRaw().y };
                 },
                 getEnemiesPositions: function(){
-                    var positions = [];
-                    enemies.forEach(function(enemy){
-                        positions.push({ x: enemy.getRaw().x, y: enemy.getRaw().y });
-                    });
-                    return positions;
+                    window.publicBases.getEnemiesPositions();
                 }
             }
         };

@@ -55,6 +55,10 @@ Enemy.prototype = {
 	    if(actions.up && enemy.body.touching.down){
 	        enemy.body.velocity.y = -350;
 	    }
+	},
+
+	getRaw: function(){
+		return enemy;
 	}
 	
 };

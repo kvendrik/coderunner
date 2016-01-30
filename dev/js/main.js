@@ -5,4 +5,4 @@ var game = require('./modules/game'),
 var gameMethods = game.init(),
 	editorMethods = editor.init(gameMethods);
 
-logger.init(editorMethods);
+logger.init(gameMethods, editorMethods);

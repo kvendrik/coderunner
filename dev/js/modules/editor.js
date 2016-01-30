@@ -9,16 +9,18 @@ module.exports = {
         this._bindEvents();
 
         this._gameMethods = gameMethods;
-        window.publicGameMethods = gameMethods.publicMethods;
 
         return {
+            isRunning: function(){
+                return self._running;
+            },
             stopRunning: self._stopRunning.bind(self)
         };
     },
   
     _initCm: function(){
         var cm = CodeMirror(document.getElementsByClassName('js-editor')[0], {
-            value: 'this.moveRight(10);\nthis.moveLeft(5);\nthis.jump();\nthis.getMyPosition();\nthis.runScript();',
+            value: 'moveRight(10);\nmoveLeft(5);\njump();',
             lineNumbers: true,
             mode: 'javascript',
             theme: 'monokai'
@@ -45,13 +47,27 @@ module.exports = {
                 this._execEditorCode(self._cm);
                 btnEl.innerHTML = 'Stop';
                 this._running = true;
+                this._gameMethods.runScript();
             }
         }.bind(this), false);
     },
   
     _execEditorCode: function(editor){
         var val = this._cm.getValue();
-        new Function('(function(window){'+val+'}).apply(window.publicGameMethods);')();
+
+        var argsStr = '',
+            execArgsStr = '',
+            publicMethods = this._gameMethods.publicMethods;
+
+        for(var name in publicMethods){
+            argsStr += name+', ';
+            execArgsStr += publicMethods[name].toString()+', ';
+        }
+
+        argsStr = argsStr.replace(/\,\s$/, '');
+        execArgsStr = execArgsStr.replace(/\,\s$/, '');
+
+        new Function('(function('+argsStr+', window, console, document){'+val+'}).apply(null, ['+execArgsStr+']);')();
     }
   
 };
