@@ -30,7 +30,7 @@ body {
 	}
 }
 
-.console {
+.logger {
 	height: 200px;
 	font-size: $size-s;
 	overflow-y: auto;
@@ -39,7 +39,7 @@ body {
 		padding: $margin-m;
 		background-color: rgba($blue, .2);
 
-		&.console__li--err {
+		&.logger__li--err {
 			background-color: rgba($red, .2);
 		}
 	}

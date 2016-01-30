@@ -3,6 +3,8 @@ module.exports = {
     init: function(gameMethods){
         var self = this;
 
+        this._running = false;
+
         this._initCm();
         this._bindEvents();
 
@@ -29,30 +31,26 @@ module.exports = {
 
     _stopRunning: function(){
         this._gameMethods.resetPlayer();
+        this._gameMethods.clearQue();
         this._btnEl.innerHTML = 'Run';
         this._running = false;
     },
   
     _bindEvents: function(){
-        var self = this;
-
-        this._running = false;
-
         var btnEl = this._btnEl = document.getElementsByClassName('js-editor-run')[0];
         btnEl.addEventListener('click', function(){
             if(this._running){
-                self._stopRunning();
+                this._stopRunning();
             } else {
-                self._execEditorCode(self._cm);
+                this._execEditorCode(self._cm);
                 btnEl.innerHTML = 'Stop';
                 this._running = true;
             }
-        }, false);
+        }.bind(this), false);
     },
   
     _execEditorCode: function(editor){
         var val = this._cm.getValue();
-        this._gameMethods.clearQue();
         new Function('(function(window){'+val+'}).apply(window.publicGameMethods);')();
     }
   

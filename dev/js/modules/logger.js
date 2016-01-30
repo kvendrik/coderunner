@@ -10,10 +10,10 @@ module.exports = {
     },
   
     _handleEditorCodeError: function(msg, url, lineIdx, charIdx, err){
-        var wrapper = document.getElementsByClassName('js-console')[0],
+        var wrapper = document.getElementsByClassName('js-logger')[0],
             el = document.createElement('li');
 
-        el.className = 'console__li--err';
+        el.className = 'logger__li--err';
         el.innerHTML = msg;
         wrapper.appendChild(el);
 

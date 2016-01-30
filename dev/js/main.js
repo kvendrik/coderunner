@@ -1,8 +1,8 @@
 var game = require('./modules/game'),
 	editor = require('./modules/editor'),
-	console = require('./modules/console');
+	logger = require('./modules/logger');
 
 var gameMethods = game.init(),
 	editorMethods = editor.init(gameMethods);
 
-console.init(editorMethods);
+logger.init(editorMethods);
