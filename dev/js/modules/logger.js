@@ -7,7 +7,7 @@ module.exports = {
         this._editorMethods = editorMethods;
         this._bindEvents();
 
-        gameMethods.setPublicMethod('log', function(){
+        gameMethods.setPublicMethod('log', ['msg'], function(){
             if(editorMethods.isRunning()){
                 self._addLog(arguments, false);
             }
@@ -25,8 +25,17 @@ module.exports = {
         
         if(isError) el.className = 'logger__li--err';
         for(var i = 0; i < msgs.length; i++){
-            msg += msgs[i]+' ';
+            if(typeof msgs[i] === 'object'){
+                msg += '{';
+                for(var key in msgs[i]){
+                    msg += key+':'+msgs[i][key]+',';
+                }
+                msg += '}';
+            } else {
+                msg += msgs[i]+' ';
+            }
         }
+        console.log(msg);
         el.innerHTML = msg;
         wrapper.appendChild(el);
 

@@ -1,3 +1,12 @@
+var game = require('./game'),
+    Player = require('./Player'),
+    Enemy = require('./Enemy'),
+    platforms = require('./platforms'),
+    stars = require('./stars');
+
+var enemies = [new Enemy()],
+    player = new Player(window.publicBases);
+
 window.publicBases = {
     _que: [],
     clearQue: function(){
@@ -7,19 +16,31 @@ window.publicBases = {
         var i = 0,
             self = this;
 
+        var cont = function(){
+            i++;
+            if(i < self._que.length){
+                doStep();
+            }
+        };
+
         var doStep = function(){
             var step = self._que[i];
-            step.start();
-            setTimeout(function(){
-                step.end();
-                i++;
-                if(i < self._que.length){
-                    doStep();
-                }
-            }, step.duration);
+            if(typeof step === 'function'){
+                step();
+                cont();
+            } else {
+                step.start();
+                setTimeout(function(){
+                    step.end();
+                    cont();
+                }, step.duration);
+            }
         };
 
         doStep();
+    },
+    pipe: function(func){
+        this._que.push(func);
     },
     move: function(dir, duration){
         this._que.push({
@@ -33,6 +54,9 @@ window.publicBases = {
             duration: duration
         });
     },
+    getMyPosition: function(){
+        return { x: player.getRaw().x, y: player.getRaw().y };
+    },
     getEnemiesPositions: function(){
         var positions = [];
         enemies.forEach(function(enemy){
@@ -41,15 +65,6 @@ window.publicBases = {
         return positions;
     }
 };
-
-var game = require('./game'),
-    Player = require('./Player'),
-    Enemy = require('./Enemy'),
-    platforms = require('./platforms'),
-    stars = require('./stars');
-
-var enemies = [new Enemy()],
-    player = new Player(window.publicBases);
 
 module.exports = {
     init: function(){
@@ -60,19 +75,23 @@ module.exports = {
         });
 
         return {
-            setPublicMethod: function(name, func){
-                this.publicMethods[name] = func;
+            setPublicMethod: function(name, args, func){
+                window.publicBases[name] = func;
+                this.publicMethods[name] = 'function('+args.join(',')+'){ window.publicBases.'+name+'('+args.join(',')+'); }';
             },
             clearQue: function(){
                 window.publicBases.clearQue();
             },
             resetPlayer: function(){
-                player.resetPos();
+                player.resetPos.call(player);
             },
             runScript: function(){
                 window.publicBases.runQue();
             },
             publicMethods: {
+                pipe: function(func){
+                    window.publicBases.pipe(func);
+                },
                 moveRight: function(steps){
                     window.publicBases.move('right', steps*100);
                 },
@@ -83,7 +102,7 @@ module.exports = {
                     window.publicBases.move('up', 1000);
                 },
                 getMyPosition: function(){
-                    return { x: player.getRaw().x, y: player.getRaw().y };
+                    return window.publicBases.getMyPosition();
                 },
                 getEnemiesPositions: function(){
                     window.publicBases.getEnemiesPositions();

@@ -20,7 +20,7 @@ module.exports = {
   
     _initCm: function(){
         var cm = CodeMirror(document.getElementsByClassName('js-editor')[0], {
-            value: 'moveRight(10);\nmoveLeft(5);\njump();',
+            value: 'moveRight(10);\nmoveLeft(5);\njump();\npipe(function(){\n\tlog(getMyPosition().x);\n});',
             lineNumbers: true,
             mode: 'javascript',
             theme: 'monokai'
@@ -67,7 +67,7 @@ module.exports = {
         argsStr = argsStr.replace(/\,\s$/, '');
         execArgsStr = execArgsStr.replace(/\,\s$/, '');
 
-        new Function('(function('+argsStr+', window, console, document){'+val+'}).apply(null, ['+execArgsStr+']);')();
+        new Function('(function('+argsStr+', window, document){'+val+'}).apply(null, ['+execArgsStr+']);')();
     }
   
 };
