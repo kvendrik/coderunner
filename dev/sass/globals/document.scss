@@ -1,0 +1,28 @@
+* {
+  	margin: 0;
+  	padding: 0;
+  	box-sizing: border-box;
+}
+
+html,body {
+  	width: 100%;
+  	height: 100%;
+}
+
+body {
+  	font: $size-m $size-m $main-family;
+  	color: $white;
+  	background-color: $base-color;
+  	line-height: $line-height;
+}
+
+.editor {
+	width: 40%;
+	float: left;
+	overflow: hidden;
+}
+
+.playground {
+	width: 60%;
+	overflow: hidden;
+}

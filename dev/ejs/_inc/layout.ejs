@@ -1,0 +1,73 @@
+<%
+    var siteUrl = 'http://coderungame.com',
+        appName = 'Coderun',
+        appDesc = '';
+%>
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title><%= appName %> - <%= appDesc %></title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="description" content="<%= appDesc %>">
+
+    <meta name="author" content="Duxilio">
+    <meta name="follow" content="index, follow">
+
+    <meta property="og:site_name" content="<%= appName %> - <%= appDesc %>">
+    <meta property="og:locale" content="en-US">
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="<%= appDesc %>">
+    <meta property="og:url" content="<%= siteUrl %>">
+    <meta property="og:title" content="<%= appName %> - <%= appDesc %>">
+    <meta property="og:image" content="<%= siteUrl %>/img/coderun-og.png">
+    <meta property="fb:app_id" content="">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@coderungame">
+    <meta name="twitter:url" content="<%= siteUrl %>">
+    <meta name="twitter:title" content="<%= appName %> - <%= appDesc %>">
+    <meta name="twitter:description" content="<%= appDesc %>">
+    <meta name="twitter:image" content="<%= siteUrl %>/img/coderun-og.png">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/img/favicons/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/img/favicons/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/img/favicons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/img/favicons/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/img/favicons/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/img/favicons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/img/favicons/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/img/favicons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/favicons/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/img/favicons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/img/favicons/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/img/favicons/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/img/favicons/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="/img/favicons/manifest.json">
+    <link rel="shortcut icon" href="/img/favicons/favicon.ico">
+    <meta name="msapplication-TileColor" content="#2f88bf">
+    <meta name="msapplication-TileImage" content="/img/favicons/mstile-144x144.png">
+    <meta name="msapplication-config" content="/img/favicons/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="stylesheet" type="text/css" href="/css/main.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.9.0/codemirror.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.9.0/theme/monokai.css">
+  </head>
+  <body>
+
+    <header class="masthead">
+        <a href="javascript:void(0);" class="js-editor-run">Run</a>
+    </header>
+
+    <%- body %>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.9.0/codemirror.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.9.0/mode/javascript/javascript.js"></script>
+    <script src="/js/phaser.min.js"></script>
+    <script src="/js/app.js"></script>
+
+  </body>
+</html>
