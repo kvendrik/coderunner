@@ -54,6 +54,8 @@ Player.prototype = {
 	resetPos: function(){
 		player.kill();
 
+		this.setMovementSpeed(150);
+
 		window.publicBases.clearQue();
 		window.publicOnUpdate = undefined;
 
