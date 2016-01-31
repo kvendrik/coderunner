@@ -16,6 +16,10 @@ body {
   	line-height: $line-height;
 }
 
+a {
+	color: $white;
+}
+
 .btn {
 	color: $white;
 	text-decoration: none;
@@ -35,6 +39,10 @@ body {
 
 	&.pane--right {
 		width: 60%;
+	}
+
+	&.pane--expanded {
+		width: 100%;
 	}
 }
 
@@ -57,4 +65,8 @@ body {
 
 .playground {
 	overflow: hidden;
+}
+
+.masthead .btn {
+	margin-right: $margin-m;
 }

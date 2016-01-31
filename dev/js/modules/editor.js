@@ -3,6 +3,8 @@ module.exports = {
     init: function(gameMethods){
         var self = this;
 
+        this._wrapper = document.getElementsByClassName('js-editor')[0];
+
         this._running = false;
 
         this._initCm();
@@ -19,7 +21,7 @@ module.exports = {
     },
   
     _initCm: function(){
-        var cm = CodeMirror(document.getElementsByClassName('js-editor')[0], {
+        var cm = CodeMirror(this._wrapper, {
             value: localStorage['coderunner__editor-value'] || 'moveRight(10);\nmoveLeft(5);\njump();\npipe(function(){\n\tlog(getMyPosition());\n\tlog(getEnemiesPositions());\n});',
             lineNumbers: true,
             mode: 'javascript',
@@ -42,14 +44,30 @@ module.exports = {
     },
   
     _bindEvents: function(){
-        var btnEl = this._btnEl = document.getElementsByClassName('js-editor-run')[0];
-        btnEl.addEventListener('click', function(){
+        var wrapper = this._wrapper;
+
+        var expandBtnEl = document.getElementsByClassName('js-editor-expand')[0];
+        expandBtnEl.addEventListener('click', function(){
+            var parentEl = wrapper.parentNode;
+
+            if(parentEl.classList.contains('pane--expanded')){
+                parentEl.classList.remove('pane--expanded');
+                expandBtnEl.innerHTML = 'Expand Editor';
+            } else {
+                parentEl.classList.add('pane--expanded');
+                expandBtnEl.innerHTML = 'Unexpand Editor';
+            }
+        }, false);
+
+
+        var runBtnEl = this._btnEl = document.getElementsByClassName('js-editor-run')[0];
+        runBtnEl.addEventListener('click', function(){
             if(this._running){
                 this._stopRunning();
                 this._cm.options.readOnly = false;
             } else {
                 this._execEditorCode(self._cm);
-                btnEl.innerHTML = 'Stop';
+                runBtnEl.innerHTML = 'Stop';
                 this._running = true;
                 this._gameMethods.runScript();
                 this._cm.options.readOnly = true;
