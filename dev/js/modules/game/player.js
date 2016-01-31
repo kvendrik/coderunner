@@ -12,6 +12,8 @@ var Player = function(){};
 
 Player.prototype = {
 
+	_movementSpeed: 150,
+
 	create: function(){
 		player = game.getRaw().add.sprite(32, game.getRaw().world.height - 150, 'dude');
 	    game.getRaw().physics.arcade.enable(player);
@@ -30,10 +32,10 @@ Player.prototype = {
 		player.body.velocity.x = 0;
 
 	    if(actions.left){
-	        player.body.velocity.x = -150;
+	        player.body.velocity.x = -this._movementSpeed;
 	        player.animations.play('left');
 	    } else if(actions.right) {
-	        player.body.velocity.x = 150;
+	        player.body.velocity.x = this._movementSpeed;
 	        player.animations.play('right');
 	    } else {
 	        player.animations.stop();
@@ -43,6 +45,10 @@ Player.prototype = {
 	    if(actions.up && player.body.touching.down){
 	        player.body.velocity.y = -350;
 	    }
+	},
+
+	setMovementSpeed: function(speed){
+		this._movementSpeed = speed;
 	},
 
 	resetPos: function(){

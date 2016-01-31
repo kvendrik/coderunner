@@ -71,6 +71,9 @@ window.publicBases = {
     },
     setPlayerAction: function(actionName, value){
         player.updateAction(actionName, value);
+    },
+    setMovementSpeed: function(speed){
+        player.setMovementSpeed(speed);
     }
 };
 
@@ -120,6 +123,9 @@ module.exports = {
                 },
                 getEnemiesPositions: function(){
                     return window.publicBases.getEnemiesPositions();
+                },
+                setMovementSpeed: function(speed){
+                    window.publicBases.setMovementSpeed(speed);
                 }
             }
         };
