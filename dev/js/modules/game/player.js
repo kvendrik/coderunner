@@ -49,6 +49,7 @@ Player.prototype = {
 		player.kill();
 
 		window.publicBases.clearQue();
+		window.publicOnUpdate = undefined;
 
 		actions = {
 	    	left: false,

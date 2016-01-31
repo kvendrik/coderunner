@@ -5,8 +5,9 @@ var game = require('./game'),
     stars = require('./stars');
 
 var enemies = [new Enemy()],
-    player = new Player(),
-    publicOnUpdate;
+    player = new Player();
+
+window.publicOnUpdate;
 
 window.publicBases = {
     _que: [],
@@ -66,7 +67,7 @@ window.publicBases = {
         return positions;
     },
     onUpdate: function(func){
-        publicOnUpdate = func;
+        window.publicOnUpdate = func;
     },
     setPlayerAction: function(actionName, value){
         player.updateAction(actionName, value);
@@ -148,5 +149,5 @@ var update = function(){
         enemy.update(player);
     });
 
-    if(typeof publicOnUpdate === 'function') publicOnUpdate();
+    if(typeof window.publicOnUpdate === 'function') window.publicOnUpdate();
 };
