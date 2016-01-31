@@ -67,6 +67,9 @@ window.publicBases = {
     },
     onUpdate: function(func){
         publicOnUpdate = func;
+    },
+    setPlayerAction: function(actionName, value){
+        player.updateAction(actionName, value);
     }
 };
 
@@ -104,6 +107,9 @@ module.exports = {
                 },
                 moveLeft: function(steps){
                     window.publicBases.move('left', steps*100);
+                },
+                setPlayerAction: function(actionName, value){
+                    window.publicBases.setPlayerAction(actionName, value);
                 },
                 jump: function(){
                     window.publicBases.move('up', 1000);
