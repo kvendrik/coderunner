@@ -5,7 +5,7 @@ var game = require('./game'),
     stars = require('./stars');
 
 var enemies = [new Enemy()],
-    player = new Player(window.publicBases);
+    player = new Player();
 
 window.publicBases = {
     _que: [],
@@ -83,7 +83,6 @@ module.exports = {
                 window.publicBases.clearQue();
             },
             resetPlayer: function(){
-                window.publicBases.clearQue();
                 player.resetPos();
             },
             runScript: function(){

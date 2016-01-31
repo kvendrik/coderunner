@@ -37,7 +37,7 @@ Enemy.prototype = {
 
 	update: function(player){
 		game.getRaw().physics.arcade.collide(enemy, platforms.getRaw());
-		game.getRaw().physics.arcade.collide(player.getRaw(), enemy);
+		game.getRaw().physics.arcade.collide(player.getRaw(), enemy, player.resetPos.bind(player));
 
 		enemy.body.velocity.x = 0;
 

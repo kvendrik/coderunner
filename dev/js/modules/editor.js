@@ -33,7 +33,6 @@ module.exports = {
 
     _stopRunning: function(){
         this._gameMethods.resetPlayer();
-        this._gameMethods.clearQue();
         this._btnEl.innerHTML = 'Run';
         this._running = false;
     },
@@ -43,11 +42,13 @@ module.exports = {
         btnEl.addEventListener('click', function(){
             if(this._running){
                 this._stopRunning();
+                this._cm.options.readOnly = false;
             } else {
                 this._execEditorCode(self._cm);
                 btnEl.innerHTML = 'Stop';
                 this._running = true;
                 this._gameMethods.runScript();
+                this._cm.options.readOnly = true;
             }
         }.bind(this), false);
     },

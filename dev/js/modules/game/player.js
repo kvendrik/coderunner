@@ -8,9 +8,7 @@ var player,
 	    up: false
 	};
 
-var Player = function(publicBases){
-	this._publicBases = publicBases;
-};
+var Player = function(){};
 
 Player.prototype = {
 
@@ -49,6 +47,8 @@ Player.prototype = {
 
 	resetPos: function(){
 		player.kill();
+
+		window.publicBases.clearQue();
 
 		actions = {
 	    	left: false,
