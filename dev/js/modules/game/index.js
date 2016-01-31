@@ -38,7 +38,7 @@ window.publicBases = {
             }
         };
 
-        doStep();
+        if(self._que.length > 0) doStep();
     },
     pipe: function(func){
         this._que.push(func);
