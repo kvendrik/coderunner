@@ -83,7 +83,8 @@ module.exports = {
                 window.publicBases.clearQue();
             },
             resetPlayer: function(){
-                player.resetPos.call(player);
+                window.publicBases.clearQue();
+                player.resetPos();
             },
             runScript: function(){
                 window.publicBases.runQue();
@@ -105,7 +106,7 @@ module.exports = {
                     return window.publicBases.getMyPosition();
                 },
                 getEnemiesPositions: function(){
-                    window.publicBases.getEnemiesPositions();
+                    return window.publicBases.getEnemiesPositions();
                 }
             }
         };

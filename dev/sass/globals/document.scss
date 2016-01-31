@@ -36,8 +36,10 @@ body {
 	overflow-y: auto;
 
 	li {
+		font-family: $code-family;
 		padding: $margin-m;
 		background-color: rgba($blue, .2);
+		margin-bottom: 1px;
 
 		&.logger__li--err {
 			background-color: rgba($red, .2);

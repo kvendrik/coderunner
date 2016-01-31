@@ -20,7 +20,7 @@ module.exports = {
   
     _initCm: function(){
         var cm = CodeMirror(document.getElementsByClassName('js-editor')[0], {
-            value: 'moveRight(10);\nmoveLeft(5);\njump();\npipe(function(){\n\tlog(getMyPosition().x);\n});',
+            value: 'moveRight(10);\nmoveLeft(5);\njump();\npipe(function(){\n\tlog(getMyPosition());\n\tlog(getEnemiesPositions());\n});',
             lineNumbers: true,
             mode: 'javascript',
             theme: 'monokai'

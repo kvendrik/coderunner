@@ -25,14 +25,11 @@ module.exports = {
         
         if(isError) el.className = 'logger__li--err';
         for(var i = 0; i < msgs.length; i++){
-            if(typeof msgs[i] === 'object'){
-                msg += '{';
-                for(var key in msgs[i]){
-                    msg += key+':'+msgs[i][key]+',';
-                }
-                msg += '}';
+            var curr = msgs[i];
+            if(typeof curr === 'object'){
+                msg += JSON.stringify(curr);
             } else {
-                msg += msgs[i]+' ';
+                msg += curr+' ';
             }
         }
         el.innerHTML = msg;

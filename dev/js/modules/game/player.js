@@ -50,8 +50,6 @@ Player.prototype = {
 	resetPos: function(){
 		player.kill();
 
-		this._publicBases.clearQue();
-
 		actions = {
 	    	left: false,
 	    	right: false,
