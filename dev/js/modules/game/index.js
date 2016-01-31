@@ -5,7 +5,8 @@ var game = require('./game'),
     stars = require('./stars');
 
 var enemies = [new Enemy()],
-    player = new Player();
+    player = new Player(),
+    publicOnUpdate;
 
 window.publicBases = {
     _que: [],
@@ -63,6 +64,9 @@ window.publicBases = {
             positions.push({ x: enemy.getRaw().x, y: enemy.getRaw().y });
         });
         return positions;
+    },
+    onUpdate: function(func){
+        publicOnUpdate = func;
     }
 };
 
@@ -89,6 +93,9 @@ module.exports = {
                 window.publicBases.runQue();
             },
             publicMethods: {
+                update: function(func){
+                    window.publicBases.onUpdate(func);
+                },
                 pipe: function(func){
                     window.publicBases.pipe(func);
                 },
@@ -134,4 +141,6 @@ var update = function(){
     enemies.forEach(function(enemy){
         enemy.update(player);
     });
+
+    if(typeof publicOnUpdate === 'function') publicOnUpdate();
 };
