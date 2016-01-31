@@ -74,6 +74,9 @@ window.publicBases = {
     },
     setMovementSpeed: function(speed){
         player.setMovementSpeed(speed);
+    },
+    setVelocity: function(velocity){
+        player.setVelocity(velocity);
     }
 };
 
@@ -126,6 +129,9 @@ module.exports = {
                 },
                 setMovementSpeed: function(speed){
                     window.publicBases.setMovementSpeed(speed);
+                },
+                setVelocity: function(velocity){
+                    window.publicBases.setVelocity(velocity);
                 }
             }
         };

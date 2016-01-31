@@ -13,6 +13,7 @@ var Player = function(){};
 Player.prototype = {
 
 	_movementSpeed: 150,
+	_velocity: -350,
 
 	create: function(){
 		player = game.getRaw().add.sprite(32, game.getRaw().world.height - 150, 'dude');
@@ -43,7 +44,7 @@ Player.prototype = {
 	    }
 
 	    if(actions.up && player.body.touching.down){
-	        player.body.velocity.y = -350;
+	        player.body.velocity.y = this._velocity;
 	    }
 	},
 
@@ -51,10 +52,15 @@ Player.prototype = {
 		this._movementSpeed = speed;
 	},
 
+	setVelocity: function(velocity){
+		this._velocity = velocity;
+	},
+
 	resetPos: function(){
 		player.kill();
 
 		this.setMovementSpeed(150);
+		this.setVelocity(-350);
 
 		window.publicBases.clearQue();
 		window.publicOnUpdate = undefined;
