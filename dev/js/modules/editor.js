@@ -20,12 +20,16 @@ module.exports = {
   
     _initCm: function(){
         var cm = CodeMirror(document.getElementsByClassName('js-editor')[0], {
-            value: 'moveRight(10);\nmoveLeft(5);\njump();\npipe(function(){\n\tlog(getMyPosition());\n\tlog(getEnemiesPositions());\n});',
+            value: localStorage['coderunner__editor-value'] || 'moveRight(10);\nmoveLeft(5);\njump();\npipe(function(){\n\tlog(getMyPosition());\n\tlog(getEnemiesPositions());\n});',
             lineNumbers: true,
             mode: 'javascript',
             theme: 'monokai'
         });
 
+        cm.on('change', function(editor){
+            var val = editor.getValue();
+            localStorage['coderunner__editor-value'] = val;
+        });
         cm.setSize(null, window.innerHeight);
     
         this._cm = cm;
