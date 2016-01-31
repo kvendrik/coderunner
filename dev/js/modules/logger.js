@@ -3,15 +3,17 @@ module.exports = {
     init: function(gameMethods, editorMethods){
         var self = this;
 
-        this._el = document.getElementsByClassName('js-logger')[0];
+        var el = this._el = document.getElementsByClassName('js-logger')[0];
         this._editorMethods = editorMethods;
         this._bindEvents();
 
         gameMethods.setPublicMethod('log', ['msg'], function(){
-            if(editorMethods.isRunning()){
-                self._addLog(arguments, false);
-            }
+            self._addLog(arguments, false);
         });
+
+        window.clearLog = function(){
+            el.innerHTML = '';
+        };
     },
   
     _bindEvents: function(){

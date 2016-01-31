@@ -66,6 +66,7 @@ module.exports = {
                 this._stopRunning();
                 this._cm.options.readOnly = false;
             } else {
+                window.clearLog();
                 this._execEditorCode(self._cm);
                 runBtnEl.innerHTML = 'Stop';
                 this._running = true;
