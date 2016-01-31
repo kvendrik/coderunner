@@ -16,6 +16,14 @@ body {
   	line-height: $line-height;
 }
 
+.btn {
+	color: $white;
+	text-decoration: none;
+	background-color: $blue;
+	padding: $margin-m;
+	display: inline-block;
+}
+
 .pane {
 	height: 100%;
 	float: left;
