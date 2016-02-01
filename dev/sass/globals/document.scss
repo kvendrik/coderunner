@@ -75,8 +75,8 @@ a {
 	}
 }
 
-.editor {
-	&.editor--running {
+.editor, .snippets-list {
+	.game-running & {
 		opacity: .5;
 	}
 }

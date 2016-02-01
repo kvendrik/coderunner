@@ -12,7 +12,9 @@ module.exports = {
         this._initCm();
         this._bindEvents();
 
-        snippets.init(this._cm);
+        snippets.init(this._cm, function(){
+            return self._running;
+        });
 
         this._gameMethods = gameMethods;
 
@@ -49,7 +51,7 @@ module.exports = {
 
         this._runBtnEl.innerHTML = 'Run';
         this._running = false;
-        this._wrapper.classList.remove('editor--running');
+        document.body.classList.remove('game-running');
         this._cm.options.readOnly = false;
     },
 
@@ -59,7 +61,7 @@ module.exports = {
         }
 
         this._runBtnEl.innerHTML = 'Stop';
-        this._wrapper.classList.add('editor--running');
+        document.body.classList.add('game-running');
         this._running = true;
         this._cm.options.readOnly = true;
 

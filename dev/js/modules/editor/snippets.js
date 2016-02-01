@@ -1,20 +1,27 @@
+var defaultSnippetsGetter = require('./defaultSnippets');
+
 module.exports = {
 
-    init: function(editor){
+    init: function(editor, getIsRunning){
         this._wrapper = document.getElementsByClassName('js-snippets-list')[0];
         this._editor = editor;
+        this._getIsRunning = getIsRunning;
 
-        var savedSnippets = localStorage['coderunner__editor-snippets'];
+        var savedSnippets = localStorage['coderunner__editor-snippets'],
+            defaultSnippets = defaultSnippetsGetter();
+
         if(savedSnippets && typeof savedSnippets === 'string'){
             try {
                 savedSnippets = JSON.parse(savedSnippets);
             } catch(err){
-                savedSnippets = {};    
+                savedSnippets = defaultSnippets;    
             }
         } else {
-            savedSnippets = {};
+            savedSnippets = defaultSnippets;
         }
+
         this._savedSnippets = savedSnippets;
+        localStorage['coderunner__editor-snippets'] = JSON.stringify(savedSnippets);
 
         this._bindEvents();
         this._listSnippets();
@@ -36,6 +43,8 @@ module.exports = {
         this._wrapper.addEventListener('click', function(e){
             var target = e.target,
                 code = target.getAttribute('data-code');
+
+            if(self._getIsRunning()) return;
 
             switch(target.tagName){
                 case 'LI':

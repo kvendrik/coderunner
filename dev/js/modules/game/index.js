@@ -25,7 +25,7 @@ module.exports = {
         return {
             setPublicMethod: function(name, args, func){
                 publicMethodHelpers[name] = func;
-                this.publicMethods[name] = 'function('+args.join(',')+'){ window.publicMethodHelpers.'+name+'('+args.join(',')+'); }';
+                this.publicMethods[name] = 'function('+args.join(',')+'){ parent.publicMethodHelpers.'+name+'('+args.join(',')+'); }';
             },
             clearQue: function(){
                 queManager.clearQue();
