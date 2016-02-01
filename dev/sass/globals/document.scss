@@ -18,6 +18,7 @@ body {
 
 a {
 	color: $white;
+	text-decoration: underline;
 }
 
 .btn {
@@ -26,6 +27,17 @@ a {
 	background-color: $blue;
 	padding: $margin-m;
 	display: inline-block;
+}
+
+.list--inline {
+	li {
+		display: inline-block;
+		margin-right: $margin-m;
+
+		&:last-child {
+			margin-right: 0;
+		}
+	}
 }
 
 .pane {
@@ -63,14 +75,45 @@ a {
 	}
 }
 
+.editor {
+	&.editor--running {
+		opacity: .5;
+	}
+}
+
+.snippets-list {
+	width: 100%;
+	font-size: $size-s;
+
+	padding-top: $margin-s;
+	padding-left: $margin-m;
+
+	li {
+		padding: $margin-s $margin-m;
+		padding-right: 0;
+
+		background-color: transparent;
+		cursor: pointer;
+
+		span {
+			font-size: $size-s;
+			display: inline-block;
+
+			padding-left: $margin-s;
+			opacity: .5;
+
+			position: relative;
+			top: -1px;
+		}
+	}
+}
+
 .playground {
 	overflow: hidden;
 }
 
-.masthead .btn {
-	margin-right: $margin-m;
-}
-
-.editor.editor--running {
-	opacity: .5;
+.masthead {
+	.btn {
+		margin-right: $margin-m;
+	}
 }

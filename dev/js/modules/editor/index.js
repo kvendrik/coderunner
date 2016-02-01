@@ -1,3 +1,5 @@
+var snippets = require('./snippets');
+
 module.exports = {
   
     init: function(gameMethods){
@@ -9,6 +11,8 @@ module.exports = {
 
         this._initCm();
         this._bindEvents();
+
+        snippets.init(this._cm);
 
         this._gameMethods = gameMethods;
 
