@@ -8,7 +8,10 @@ var player,
 	    up: false
 	};
 
-var Player = function(){};
+var Player = function(queManager, options){
+	this._queManager = queManager;
+	this._options = options;
+};
 
 Player.prototype = {
 
@@ -62,8 +65,8 @@ Player.prototype = {
 		this.setMovementSpeed(150);
 		this.setVelocity(-350);
 
-		window.publicBases.clearQue();
-		window.publicOnUpdate = undefined;
+		this._queManager.clearQue();
+		if(typeof this._options.onResetPos === 'function') this._options.onResetPos();
 
 		actions = {
 	    	left: false,

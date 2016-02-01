@@ -1,27 +1,30 @@
 module.exports = {
   
     init: function(gameMethods, editorMethods){
-        var self = this;
-
-        var el = this._el = document.getElementsByClassName('js-logger')[0];
+        var wrapper = this._wrapper = document.getElementsByClassName('js-logger')[0];
+        
         this._editorMethods = editorMethods;
+        this._gameMethods = gameMethods;
+
         this._bindEvents();
-
-        gameMethods.setPublicMethod('log', ['msg'], function(){
-            self._addLog(arguments, false);
-        });
-
-        window.clearLog = function(){
-            el.innerHTML = '';
-        };
     },
   
     _bindEvents: function(){
+        var self = this;
+        
         window.onerror = this._handleEditorCodeError.bind(this);
+
+        this._gameMethods.setPublicMethod('log', ['msg'], function(){
+            self._addLog(arguments, false);
+        });
+
+        this._editorMethods.setOnRun(function(){
+            self._wrapper.innerHTML = '';
+        });
     },
 
     _addLog: function(msgs, isError){
-        var wrapper = this._el,
+        var wrapper = this._wrapper,
             el = document.createElement('li'),
             msg = '';
         

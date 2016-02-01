@@ -16,7 +16,10 @@ module.exports = {
             isRunning: function(){
                 return self._running;
             },
-            stopRunning: self._stopRunning.bind(self)
+            stopRunning: self._stopRunning.bind(self),
+            setOnRun: function(func){
+                self._onRun = func;
+            }
         };
     },
   
@@ -39,17 +42,35 @@ module.exports = {
 
     _stopRunning: function(){
         this._gameMethods.resetPlayer();
-        this._btnEl.innerHTML = 'Run';
+
+        this._runBtnEl.innerHTML = 'Run';
         this._running = false;
         this._wrapper.classList.remove('editor--running');
+        this._cm.options.readOnly = false;
+    },
+
+    _startRunning: function(){
+        if(typeof this._onRun === 'function'){
+            this._onRun();
+        }
+
+        this._runBtnEl.innerHTML = 'Stop';
+        this._wrapper.classList.add('editor--running');
+        this._running = true;
+        this._cm.options.readOnly = true;
+
+        this._execEditorCode(self._cm);
+        this._gameMethods.runQue();
     },
   
     _bindEvents: function(){
-        var wrapper = this._wrapper;
+        var self = this;
 
-        var expandBtnEl = document.getElementsByClassName('js-editor-expand')[0];
+        var expandBtnEl = document.getElementsByClassName('js-editor-expand')[0],
+            runBtnEl = this._runBtnEl = document.getElementsByClassName('js-editor-run')[0];
+
         expandBtnEl.addEventListener('click', function(){
-            var parentEl = wrapper.parentNode;
+            var parentEl = self._wrapper.parentNode;
 
             if(parentEl.classList.contains('pane--expanded')){
                 parentEl.classList.remove('pane--expanded');
@@ -60,22 +81,13 @@ module.exports = {
             }
         }, false);
 
-
-        var runBtnEl = this._btnEl = document.getElementsByClassName('js-editor-run')[0];
         runBtnEl.addEventListener('click', function(){
-            if(this._running){
-                this._stopRunning();
-                this._cm.options.readOnly = false;
+            if(self._running){
+                self._stopRunning();
             } else {
-                window.clearLog();
-                this._execEditorCode(self._cm);
-                runBtnEl.innerHTML = 'Stop';
-                wrapper.classList.add('editor--running');
-                this._running = true;
-                this._gameMethods.runScript();
-                this._cm.options.readOnly = true;
+                self._startRunning();
             }
-        }.bind(this), false);
+        }, false);
     },
   
     _execEditorCode: function(editor){
