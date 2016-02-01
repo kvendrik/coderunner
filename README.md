@@ -1,6 +1,12 @@
 Coderunner
 ==========
 
+### Todo
+* Add snippets/tabs
+* Add `getWorldBounds`
+* Add methods cheatsheet
+* Add multiplayer (everyone who is active on the page)
+
 ### Snippets
 
 ##### Dodge Enemies
