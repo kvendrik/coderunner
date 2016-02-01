@@ -70,3 +70,7 @@ a {
 .masthead .btn {
 	margin-right: $margin-m;
 }
+
+.editor.editor--running {
+	opacity: .5;
+}

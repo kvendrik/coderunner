@@ -41,6 +41,7 @@ module.exports = {
         this._gameMethods.resetPlayer();
         this._btnEl.innerHTML = 'Run';
         this._running = false;
+        this._wrapper.classList.remove('editor--running');
     },
   
     _bindEvents: function(){
@@ -69,6 +70,7 @@ module.exports = {
                 window.clearLog();
                 this._execEditorCode(self._cm);
                 runBtnEl.innerHTML = 'Stop';
+                wrapper.classList.add('editor--running');
                 this._running = true;
                 this._gameMethods.runScript();
                 this._cm.options.readOnly = true;
