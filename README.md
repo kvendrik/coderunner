@@ -5,7 +5,6 @@ Coderunner
 Check out the [list of methods you can use in the game](https://github.com/kvendrik/coderunner/blob/gh-pages/dev/js/modules/game/publicMethods.js).
 
 ### Todo
-* Add snippets/tabs
 * Add methods cheatsheet
 * Add multiplayer (everyone who is active on the page)
 
