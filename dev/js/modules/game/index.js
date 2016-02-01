@@ -1,9 +1,8 @@
 var game = require('./game'),
-    platforms = require('./platforms'),
-    Player = require('./Player'),
-    Enemy = require('./Enemy'),
     queManager = require('./queManager'),
-    publicMethods = require('./publicMethods');
+    platforms = require('./components/platforms'),
+    Player = require('./components/Player'),
+    Enemy = require('./components/Enemy');
 
 var enemies = [new Enemy()],
     player = new Player(queManager, {
@@ -12,7 +11,8 @@ var enemies = [new Enemy()],
         }
     });
 
-var publicMethodHelpers = require('./publicMethodHelpers')(queManager, game, player, enemies);
+var publicMethods = require('./publicMethods'),
+    publicMethodHelpers = require('./publicMethodsHelpers')(queManager, game, player, enemies);
 
 module.exports = {
     init: function(){

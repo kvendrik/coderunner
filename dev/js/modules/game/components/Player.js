@@ -1,4 +1,4 @@
-var game = require('./game'),
+var game = require('../game'),
 	platforms = require('./platforms');
 
 var player,
