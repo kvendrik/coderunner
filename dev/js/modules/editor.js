@@ -105,7 +105,12 @@ module.exports = {
         argsStr = argsStr.replace(/\,\s$/, '');
         execArgsStr = execArgsStr.replace(/\,\s$/, '');
 
-        new Function('(function('+argsStr+', window, document){'+val+'}).apply(null, ['+execArgsStr+']);')();
+        if(!this._frame){
+            var frame = this._frame = document.createElement('iframe');
+            this._wrapper.appendChild(frame);
+        }
+
+        this._frame.contentWindow.eval('(function('+argsStr+', window, document){'+val+'}).apply(null, ['+execArgsStr+']);');
     }
   
 };

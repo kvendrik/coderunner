@@ -1,35 +1,35 @@
 module.exports = {
     update: function(func){
-        window.publicMethodHelpers.setOnUpdate(func);
+        parent.publicMethodHelpers.setOnUpdate(func);
     },
     pipe: function(func){
-        window.publicMethodHelpers.pipe(func);
+        parent.publicMethodHelpers.pipe(func);
     },
     moveRight: function(steps){
-        window.publicMethodHelpers.move('right', steps*100);
+        parent.publicMethodHelpers.move('right', steps*100);
     },
     moveLeft: function(steps){
-        window.publicMethodHelpers.move('left', steps*100);
+        parent.publicMethodHelpers.move('left', steps*100);
     },
     setAction: function(actionName, value){
-        window.publicMethodHelpers.setPlayerAction(actionName, value);
+        parent.publicMethodHelpers.setPlayerAction(actionName, value);
     },
     jump: function(){
-        window.publicMethodHelpers.move('up', 1000);
+        parent.publicMethodHelpers.move('up', 1000);
     },
     getPosition: function(){
-        return window.publicMethodHelpers.getMyPosition();
+        return parent.publicMethodHelpers.getMyPosition();
     },
     setMovementSpeed: function(speed){
-        window.publicMethodHelpers.setMovementSpeed(speed);
+        parent.publicMethodHelpers.setMovementSpeed(speed);
     },
     setVelocity: function(velocity){
-        window.publicMethodHelpers.setVelocity(velocity);
+        parent.publicMethodHelpers.setVelocity(velocity);
     },
     getEnemiesPositions: function(){
-        return window.publicMethodHelpers.getEnemiesPositions();
+        return parent.publicMethodHelpers.getEnemiesPositions();
     },
     getWorldBounds: function(){
-        return window.publicMethodHelpers.getWorldBounds();
+        return parent.publicMethodHelpers.getWorldBounds();
     }
 };
