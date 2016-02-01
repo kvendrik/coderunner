@@ -6,7 +6,6 @@ Check out the [list of methods you can use in the game](https://github.com/kvend
 
 ### Todo
 * Add snippets/tabs
-* Add `getWorldBounds`
 * Add methods cheatsheet
 * Add multiplayer (everyone who is active on the page)
 
