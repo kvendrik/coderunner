@@ -55,7 +55,7 @@ module.exports = {
                 expandBtnEl.innerHTML = 'Expand Editor';
             } else {
                 parentEl.classList.add('pane--expanded');
-                expandBtnEl.innerHTML = 'Unexpand Editor';
+                expandBtnEl.innerHTML = 'Collapse Editor';
             }
         }, false);
 
