@@ -5,9 +5,10 @@ Coderunner
 Check out the [list of methods you can use in the game](https://github.com/kvendrik/coderunner/blob/gh-pages/dev/js/modules/game/publicMethods.js).
 
 ### Todo
-* Add methods cheatsheet
+* Enhance snippets by making them work as tabs
 * Make sure `parent` or isn't accessible
 * Add method for users to add key event listeners `onKey('down', function(){})`, rename `update` to `onUpdate`
+* Add methods cheatsheet 
 * Add multiplayer (everyone who is active on the page)
 
 ### Snippets
