@@ -88,12 +88,17 @@ a {
 	padding-top: $margin-s;
 	padding-left: $margin-m;
 
+	border-bottom: solid 1px $blue;
+
 	li {
 		padding: $margin-s $margin-m;
-		padding-right: 0;
 
 		background-color: transparent;
 		cursor: pointer;
+
+		&.snippets-list__item--active {
+			background-color: $blue;
+		}
 
 		span {
 			font-size: $size-s;

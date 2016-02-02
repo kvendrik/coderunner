@@ -12,9 +12,10 @@ module.exports = {
         this._initCm();
         this._bindEvents();
 
-        snippets.init(this._cm, function(){
+        this._snippetMethods = snippets.init(this._cm, function(){
             return self._running;
         });
+        this._snippetMethods.changeActiveSnippet(0);
 
         this._gameMethods = gameMethods;
 
@@ -30,8 +31,10 @@ module.exports = {
     },
   
     _initCm: function(){
+        var self = this;
+
         var cm = CodeMirror(this._wrapper, {
-            value: localStorage['coderunner__editor-value'] || 'moveRight(10);\nmoveLeft(5);\njump();\npipe(function(){\n\tlog(getMyPosition());\n\tlog(getEnemiesPositions());\n});',
+            value: '',
             lineNumbers: true,
             mode: 'javascript',
             theme: 'monokai'
@@ -39,7 +42,7 @@ module.exports = {
 
         cm.on('change', function(editor){
             var val = editor.getValue();
-            localStorage['coderunner__editor-value'] = val;
+            self._snippetMethods.saveCodeToActiveSnippet(val);
         });
         cm.setSize(null, window.innerHeight);
     
