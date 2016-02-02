@@ -23,7 +23,6 @@ module.exports = {
             },
             saveCodeToActiveSnippet: function(code){
                 var activeSnippet = self._getActiveSnippet();
-                console.log(activeSnippet);
                 self._savedSnippets[activeSnippet.name] = code;
                 localStorage['coderunner__editor-snippets'] = JSON.stringify(self._savedSnippets);
             }

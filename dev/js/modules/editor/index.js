@@ -12,10 +12,10 @@ module.exports = {
         this._initCm();
         this._bindEvents();
 
-        this._snippetMethods = snippets.init(this._cm, function(){
+        var snippetMethods = this._snippetMethods = snippets.init(this._cm, function(){
             return self._running;
         });
-        this._snippetMethods.changeActiveSnippet(0);
+        snippetMethods.changeActiveSnippet(0);
 
         this._gameMethods = gameMethods;
 
