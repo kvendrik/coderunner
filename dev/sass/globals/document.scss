@@ -12,7 +12,7 @@ html,body {
 body {
   	font: $main-weight $size-m $main-family;
   	color: $white;
-  	background-color: $base-color;
+  	background-color: $darker;
   	line-height: $line-height;
 }
 
@@ -88,7 +88,7 @@ a {
 	padding-top: $margin-s;
 	padding-left: $margin-m;
 
-	border-bottom: solid 1px $blue;
+	background-color: $darkest;
 
 	li {
 		padding: $margin-s $margin-m;
@@ -97,7 +97,7 @@ a {
 		cursor: pointer;
 
 		&.snippets-list__item--active {
-			background-color: $blue;
+			background-color: $dark;
 		}
 
 		span {
@@ -109,6 +109,12 @@ a {
 
 			position: relative;
 			top: -1px;
+
+			@include transition(opacity);
+
+			&:hover {
+				opacity: .7;
+			}
 		}
 	}
 }
