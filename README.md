@@ -6,6 +6,8 @@ Check out the [list of methods you can use in the game](https://github.com/kvend
 
 ### Todo
 * Add methods cheatsheet
+* Make sure `parent` or isn't accessible
+* Add method for users to add key event listeners `onKey('down', function(){})`, rename `update` to `onUpdate`
 * Add multiplayer (everyone who is active on the page)
 
 ### Snippets
