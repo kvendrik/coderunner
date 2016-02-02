@@ -126,6 +126,7 @@ module.exports = {
 
     _handleAddSnippetClick: function(){
         var snippetName = prompt('Please enter a name for this snippet', 'Snippet #'+Object.keys(this._savedSnippets).length);
+        if(snippetName === null) return;
         if(!snippetName){
             alert('Thats not a valid snippet name');
         } else if(this._savedSnippets[snippetName]){
